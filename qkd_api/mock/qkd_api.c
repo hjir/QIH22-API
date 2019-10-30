@@ -33,7 +33,7 @@ uint32_t QKD_OPEN(ip_address_t destination, qos_t qos, key_handle_t key_handle) 
     return SUCCESS;
 }
 
-uint32_t QKD_CONNECT_NONBLOCKING(key_handle_t key_handle, uint32_t timeout) {
+uint32_t QKD_CONNECT_NONBLOCK(key_handle_t key_handle, uint32_t timeout) {
 
     return SUCCESS;
 }
