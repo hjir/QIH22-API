@@ -23,8 +23,8 @@ purposes.
 
 Download the repo and compile the example:
 ```bash
-git clone https://github.com/akarazeev/QIH19
-cd QIH19/qkd_api/mock/example
+git clone https://github.com/PEQI19/PEQI-OpenSSL
+cd PEQI-OpenSSL/qkd_api/mock/example
 mkdir bin/
 gcc node_a.c -I ../../ ../qkd_api.c -o bin/a
 gcc node_b.c -I ../../ ../qkd_api.c -o bin/b
@@ -36,4 +36,3 @@ acting as a server and waits for another node to connect.
 Open another terminal session in the same directory and execute `./bin/b`. The
 application connects to the other node and requests the `key` to be
 "generated".
-
