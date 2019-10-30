@@ -26,7 +26,7 @@ you can chose which one is better aligned with your own interests.
 The boundary between the two tasks is a high-level QKD API. We will not be
 designing such an API from scratch, instead we will use one that
 [ETSI](https://www.etsi.org/) has been working on. The fully documented API is
-can be found [in this repository](QKD_Application_Interface.pdf) or
+can be found [in this repository](qkd_api/QKD_Application_Interface.pdf) or
 [online](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/004/01.01.01_60/gs_QKD004v010101p.pdf).
 
 In the first task, the OpenSSL integration, the challenge is to integrate this
@@ -49,9 +49,8 @@ the simulated network with actual connections to the real hardware.
 The first part is to integrate the QKD API with OpenSSL and demo it by running
 a browser session (or some other user-level application) encrypted with QKD.
 
-You can find the C definition of this API in [the `qkd_api.h`
-header](qkd_api/qkd_api.h) and its documentation in its own
-[README](qkd_api/README.md).
+You can find the C definition of this API and its documentation in
+[`qkd_api`](qkd_api).
 
 We have written up a small guide that should get you started with the OpenSSL
 code base:
@@ -64,8 +63,7 @@ For testing purposes we also provide you with a mock implementation of this
 API. This API does nothing quantum and has limited capabilities, but it should
 be enough for you test the OpenSSL integration without having to wait for the
 full software implementation from the second part. This mock implementation can
-be found in [`qkd_api/mock`](qkd_api/mock) and its README at
-[`qkd_api/mock/README.md`](qkd_api/mock/README.md).
+be found in [`qkd_api/mock`](qkd_api/mock).
 
 ## QKD Implementation
 
