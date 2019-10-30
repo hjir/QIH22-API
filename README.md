@@ -64,8 +64,8 @@ For testing purposes we also provide you with a mock implementation of this
 API. This API does nothing quantum and has limited capabilities, but it should
 be enough for you test the OpenSSL integration without having to wait for the
 full software implementation from the second part. This mock implementation can
-be found in [`qkd_api`](qkd_api) and its documentation is in
-[`MOCK.md`](qkd_api/MOCK.md).
+be found in [`qkd_api/mock`](qkd_api/mock) and its README at
+[`qkd_api/mock/README.md`](qkd_api/mock/README.md).
 
 ## QKD Implementation
 

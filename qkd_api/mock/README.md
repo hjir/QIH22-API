@@ -24,10 +24,10 @@ purposes.
 Download the repo and compile the example:
 ```bash
 git clone https://github.com/akarazeev/QIH19
-cd QIH19/qkd_api/example
+cd QIH19/qkd_api/mock/example
 mkdir bin/
-gcc node_a.c -I ../ ../qkd_api.c -o bin/a
-gcc node_b.c -I ../ ../qkd_api.c -o bin/b
+gcc node_a.c -I ../../ ../qkd_api.c -o bin/a
+gcc node_b.c -I ../../ ../qkd_api.c -o bin/b
 ```
 
 Execute `./bin/a`. Now the application is blocked on `QKD_GET_KEY` - it is
