@@ -72,6 +72,13 @@ implement the API defined in [`qkd_api`](qkd_api) such that the OpenSSL
 integration can transparently switch over from the mock implementation to the
 actual QKD implementation.
 
+The QKD protocol should run over the
+[SimulaQron](https://github.com/SoftwareQuTech/SimulaQron) simulated network.
+The interface definition for interacting with the network is available
+[online](https://softwarequtech.github.io/SimulaQron/html/CQCInterface.html). A
+client library implementation is available on
+[GitHub](https://github.com/SoftwareQuTech/CQC-C).
+
 A high-level overview of what is necessary to produce a key using a QKD scheme
 is illustrated [here](https://qkdsimulator.com/qkd_run_example.html). A more
 detailed description with pseudocode can be found in the [Quantum Protocol
