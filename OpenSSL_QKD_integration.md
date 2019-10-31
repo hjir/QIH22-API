@@ -1,19 +1,19 @@
 # OpenSSL QKD integration
 
-Generally, if one wants to extend the `OpenSSL` lib somehow, there are two possibilities:
-1. to create an `OpenSSL` engine;
-2. to modify the `OpenSSL` state machine.
+Generally, if one wants to extend the `OpenSSL` lib, there are two possibilities:
+1. create an `OpenSSL` engine;
+2. modify the `OpenSSL` state machine.
 
 ## OpenSSL engine
 
-`OpenSSL` engine mechanism is the proper way of extending the library. An engine is a dynamic library created in a special way that can be connected while `OpenSSL` initialization. Such a library can provide customization to the existing and supported cryptography protocols. The vast majority of popular software, which relies on `OpenSSL`, support this mechanism.
+The `OpenSSL` engine mechanism is the proper way of extending the library. An engine is a dynamic library created in a special way that can be loaded during `OpenSSL` initialization. Such a library can be used to customize the existing cryptography protocols. The vast majority of popular software, which relies on `OpenSSL`, supports this mechanism.
 
-Engines for QKD protocols are not currenlty supported in OpenSSL. Nevertheless, for the purpose of the hackathon we can simply "abuse" an existing classical protocol. In our case, it makes sense to use the `Diffie-Hellman API` (`DH`). If you prefer to go this way, there is no need to implement the whole state machine behind the implemented engine: `OpenSSL` doest it instead of you. The following instructions provide some tips on the `DH OpenSSL` engine.  
+Engines for QKD protocols are not currently supported in `OpenSSL`. Nevertheless, for the purposes of the hackathon we can simply "abuse" an existing classical protocol. In our case, it makes sense to use the `Diffie-Hellman API` (`DH`). If you prefer to go this way, there is no need to implement the whole state machine behind engine: `OpenSSL` does it for you. The following instructions provide some tips on the `DH OpenSSL` engine.
 
 To overload the Diffie-Hellman protocol it is necessary to set the proper callbacks in the [corresponding structure](https://www.openssl.org/docs/man1.0.2/man3/DH_set_method.html) (`DH_METHOD`):
 - `generate_key`: this one is called to perform the first step of a Diffie-Hellman key exchange.
 - `compute_key`: this one is called to combine values obtained in the previous step with the other party's public value.
-- `bn_mod_exp`: this one computes `r = a ^ p mod m`, which is not relevant for us.
+- `bn_mod_exp`: this one computes `r = a ^ p mod m`, which is not relevant for QKD.
 
 Here are some useful links:
 
@@ -39,4 +39,4 @@ In case you want to register implemented mechanism as a new algorithm there are 
 - `ssl/ssl_locl.h:ssl3_state_st` needs to be modified in case you want to share state between methods.
 
 
-For the more deep explanation, you can consult with [OpenSSL architecture document](https://www.openssl.org/docs/OpenSSLStrategicArchitecture.html). Although it also contains future architecture plans, it is still a good reference point. Also, you may be interested in the Pre-Shared Key TLS 1.3 protocol feature.
+For a more detailed explanation, you can consult the [OpenSSL architecture document](https://www.openssl.org/docs/OpenSSLStrategicArchitecture.html). Although it also contains future architecture plans, it is still a good reference point. Also, you may be interested in the Pre-Shared Key TLS 1.3 protocol feature.
