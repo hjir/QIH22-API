@@ -8,9 +8,9 @@ running a browser session over a TLS connection encrypted with a QKD generated
 key. The quantum network in this hackathon is simulated in the quantum network
 simulator [SimulaQron](https://github.com/SoftwareQuTech/SimulaQron), but we
 will be using the [CQC
-API](https://softwarequtech.github.io/SimulaQron/html/CQCInterface.html) that
-was designed to be supported on the first demonstration network that is
-currently being built in the Netherlands.
+API](https://softwarequtech.github.io/CQC-Python/interface.html) that was
+designed to be supported on the first demonstration network that is currently
+being built in the Netherlands.
 
 ## The challenge
 
@@ -75,8 +75,8 @@ actual QKD implementation.
 The QKD protocol should run over the
 [SimulaQron](https://github.com/SoftwareQuTech/SimulaQron) simulated network.
 The interface definition for interacting with the network is available
-[online](https://softwarequtech.github.io/SimulaQron/html/CQCInterface.html). A
-client library implementation is available on
+[online](https://softwarequtech.github.io/CQC-Python/interface.html). A client
+library implementation is available on
 [GitHub](https://github.com/SoftwareQuTech/CQC-C).
 
 A high-level overview of what is necessary to produce a key using a QKD scheme
