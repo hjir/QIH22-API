@@ -7,11 +7,11 @@
 #define IP_ADDR_MAX_LEN 16
 
 enum RETURN_CODES {
-    SUCCESS = 0,
-    QKD_GET_KEY_FAILED = 1,
-    NO_QKD_CONNECTION = 2,
-    QKD_OPEN_FAILED = 3,
-    TIMEOUT_ERROR = 4,
+    QKD_RC_SUCCESS = 0,
+    QKD_RC_GET_KEY_FAILED = 1,
+    QKD_RC_NO_CONNECTION = 2,
+    QKD_RC_OPEN_FAILED = 3,
+    QKD_RC_TIMEOUT_ERROR = 4,
 };
 
 typedef char key_handle_t[KEY_HANDLE_SIZE];

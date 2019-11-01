@@ -30,17 +30,17 @@ uint32_t QKD_OPEN(ip_address_t destination, qos_t qos, key_handle_t key_handle) 
         }
     }
 
-    return SUCCESS;
+    return QKD_RC_SUCCESS;
 }
 
 uint32_t QKD_CONNECT_NONBLOCK(key_handle_t key_handle, uint32_t timeout) {
 
-    return SUCCESS;
+    return QKD_RC_SUCCESS;
 }
 
 uint32_t QKD_CONNECT_BLOCKING(key_handle_t key_handle, uint32_t timeout) {
 
-    return SUCCESS;
+    return QKD_RC_SUCCESS;
 }
 
 uint32_t QKD_GET_KEY(key_handle_t key_handle, char* key_buffer) {
@@ -94,7 +94,7 @@ uint32_t QKD_GET_KEY(key_handle_t key_handle, char* key_buffer) {
             printf("--> WRONG key_handle\n");
             freeaddrinfo(res);
             close(sd);
-            return QKD_GET_KEY_FAILED;
+            return QKD_RC_GET_KEY_FAILED;
         }
 
         /* key_handle is correct */
@@ -104,7 +104,7 @@ uint32_t QKD_GET_KEY(key_handle_t key_handle, char* key_buffer) {
         }
         freeaddrinfo(res);
         close(sd);
-        return SUCCESS;
+        return QKD_RC_SUCCESS;
     } else {
         /************
          *  SERVER  *
@@ -129,7 +129,7 @@ uint32_t QKD_GET_KEY(key_handle_t key_handle, char* key_buffer) {
             freeaddrinfo(res);
             close(sd);
             close(session_fd);
-            return QKD_GET_KEY_FAILED;
+            return QKD_RC_GET_KEY_FAILED;
         }
 
         /* key_handle is correct */
@@ -150,11 +150,11 @@ uint32_t QKD_GET_KEY(key_handle_t key_handle, char* key_buffer) {
         close(session_fd);
         freeaddrinfo(res);
         close(sd);
-        return SUCCESS;
+        return QKD_RC_SUCCESS;
     }
 }
 
 uint32_t QKD_CLOSE(key_handle_t key_handle) {
 
-    return SUCCESS;
+    return QKD_RC_SUCCESS;
 }
