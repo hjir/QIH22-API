@@ -1,8 +1,9 @@
 # QKD API
 
-More can be found here:
-* [QKD Application Interface](QKD_Application_Interface.pdf)
-* [URL](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/004/01.01.01_60/gs_QKD004v010101p.pdf)
+More details about the API can be found in the official document from ETSI:
+* [online](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/004/01.01.01_60/gs_QKD004v010101p.pdf), or
+* [in this repository](QKD_Application_Interface.pdf)
+
 
 ```c
 uint32_t QKD_OPEN(ip_address_t destination, qos_t qos, key_handle_t key_handle);

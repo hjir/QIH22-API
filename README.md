@@ -1,89 +1,43 @@
-# Quantum Internet Hackathon 2019: OpenSSL Integration Challenge
+# Quantum Internet Hackathon 2022: APIs for Quantum Protocols Challenge
 
-In this challenge the task is to integrate QKD encryption into the OpenSSL
-library. This will allow easy integration of many user applications with QKD
-since many already use OpenSSL for the purposes of encryption. At the end of
-the challenge, you will hopefully be able to demonstrate your integration by
-running a browser session over a TLS connection encrypted with a QKD generated
-key. The quantum network in this hackathon is simulated in the quantum network
-simulator [SimulaQron](https://github.com/SoftwareQuTech/SimulaQron), but we
-will be using the [CQC
-API](https://softwarequtech.github.io/CQC-Python/interface.html) that was
-designed to be supported on the first demonstration network that is currently
-being built in the Netherlands.
+In this challenge, the focus is on Application Programming Interfaces (APIs) for quantum protocols. In order to make quantum protocols useful, they need to be able to communicate with classical applications. Within this challenge, you can undertake several tasks that will bring us closer to this goal.
 
-## The challenge
+Quantum network protocols are usually implemented using low-level primitives such as quantum gates, entangled qubits, measurements etc. This makes them very difficult to integrate with real applications such as web browsers. The current situation would be equivalent to requiring every single web application to write its own code to establish a TCP connection, craft the HTTP requests, follow any redirects if necessary, and then parse the response. This is unnecessary overhead for the vast majority of programs and thus most of them will use well established libraries like [libcurl](https://curl.se/libcurl/) or [requests](https://requests.readthedocs.io/en/latest/).
 
-The challenge is split up into two parts:
-1. Integrate an abstract QKD API into OpenSSL
-2. Implement QKD in software using the CQC API
+It would be much better if established quantum protocols instead provided a similar programmatic API facilitating its use in high-level applications. One such example already exists for Quantum Key Distribution: [ETSI QKD API](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/004/01.01.01_60/gs_QKD004v010101p.pdf). This challenge is all about designing and implementing such APIs for quantum protocols.
 
-The two parts can be done independently and they require different expertise so
-you can chose which one is better aligned with your own interests.
+To check out an example of what this challenge is about, see Bruno Rijsman's [report](https://brunorijsman.github.io/openssl-qkd/) on the QKD integration within OpenSSL for the RIPE Quantum Internet Hackathon in 2019.
 
-## QKD API
+## The Challenge
 
-The boundary between the two tasks is a high-level QKD API. We will not be
-designing such an API from scratch, instead we will use one that
-[ETSI](https://www.etsi.org/) has been working on. The fully documented API is
-can be found [in this repository](qkd_api/QKD_Application_Interface.pdf) or
-[online](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/004/01.01.01_60/gs_QKD004v010101p.pdf).
+The challenge is split up into three parts:
 
-In the first task, the OpenSSL integration, the challenge is to integrate this
-API into OpenSSL. We provide a mock implementation for testing purposes.
+1. Design and implement an API for a quantum protocol
+2. Integrate an API within an already existing open-source app
+3. Connect an API to QNE-ADK
 
-In the second task, the QKD implementation, the challenge is to implement a
-full QKD scheme in software that uses the CQC API to interact with a simulated
-network.
+Each of the parts can be done independently and they require different skills; you can choose which one is best aligned with your own interests or split up the sub-challenges within your team. Note that multiple teams can also collaborate together and focus on finishing all the sub-challenges for the same quantum protocol.
 
-Once both tasks are complete, the mock implementation used in the first part
-can be replaced with the full implementation from the second part so that we
-can eventually run a browser session across the network.
+## 1. API Design & Implementation
 
-Looking ahead, once the demo network is up and running, this OpenSSL
-integration should then be able to run on top of the real thing by replacing
-the simulated network with actual connections to the real hardware.
+An example of an API written for a quantum protocol is the Quantum Key Distribution (QKD) API written by [ETSI](https://www.etsi.org/); it can be found [online](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/004/01.01.01_60/gs_QKD004v010101p.pdf) or in [this repository](qkd_api/QKD_Application_Interface.pdf). This can be a great inspiration for you when working on this sub-challenge, and you can also use the format of the ETSI API definition for your own API design.
 
-## OpenSSL integration
+The goal is to take any quantum protocol from the [Quantum Protocol Zoo](https://wiki.veriqloud.fr/index.php?title=Main_Page) and design an API for it. Think about which functionality it provides and how can the communication between the quantum and classical parts be generalised.
 
-The first part is to integrate the QKD API with OpenSSL and demo it by running
-a browser session (or some other user-level application) encrypted with QKD.
+After having defined such an API, you can work on writing a mockup of it. You can do this in any programming language. If you can already think of an application in which such a quantum protocol could be used, you can pick the application's programming language to allow for easier integration in the future.
 
-You can find the C definition of this API and its documentation in
-[`qkd_api`](qkd_api).
+In this repository, we also provide an example of a mockup written for the ETSI QKD API (see [`qkd/mock`](qkd_api/mock)). This mockup is written in C, so another possible task for you is to re-implement in your programming language of choice (e.g. Python).
 
-We have written up a small guide that should get you started with the OpenSSL
-code base:
+## 2. API Integration
 
-📖 [OpenSSL QKD integration manual](OpenSSL_QKD_integration.md)
+The next step in using quantum protocols within classical applications is to integrate the API within an actual application. The goal here is to take a quantum protocol and integrate it within an open-source application or library (e.g. Telegram or OpenSSL). The output of this sub-challenge can be a demonstration of a running application.
 
-### Mock
+You can follow this step using the API and its mockup that you implemented as part of the previous sub-challenge, or you can make use of the ETSI QKD API and the mockup provided in this repository. Note that if you decide to work on QKD integration, the main difference to most commonly used algorithms is that QKD is symmetric and the keys will be provided by some server, not by the user.
 
-For testing purposes we also provide you with a mock implementation of this
-API. This API does nothing quantum and has limited capabilities, but it should
-be enough for you test the OpenSSL integration without having to wait for the
-full software implementation from the second part. This mock implementation can
-be found in [`qkd_api/mock`](qkd_api/mock).
+## 3. API and QNE-ADK Connection
 
-## QKD Implementation
+Up until now, the API has only been mocked and it has not been communicating with any simulators or real quantum hardware. In the future, this will be one of the goals: providing an implementation of the API to actually connect classical applications and quantum protocols executed on quantum hardware.
 
-An actual implementation of the QKD API is also needed. The goal here is to
-implement the API defined in [`qkd_api`](qkd_api) such that the OpenSSL
-integration can transparently switch over from the mock implementation to the
-actual QKD implementation.
+For now, this sub-challenge gives you an opportunity to help with those efforts on a smaller scale. The idea is to try to implement an API of your choosing using calls to QNE-ADK. To give a more concrete example, for the QKD API this would be developing a QKD application using QNE-ADK in such a way that it provides the method calls defined in the API.
 
-The QKD protocol should run over the
-[SimulaQron](https://github.com/SoftwareQuTech/SimulaQron) simulated network.
-The interface definition for interacting with the network is available
-[online](https://softwarequtech.github.io/CQC-Python/interface.html). A client
-library implementation is available on
-[GitHub](https://github.com/SoftwareQuTech/CQC-C).
-
-A high-level overview of what is necessary to produce a key using a QKD scheme
-is illustrated [here](https://qkdsimulator.com/qkd_run_example.html). A more
-detailed description with pseudocode can be found in the [Quantum Protocol
-Zoo](https://wiki.veriqloud.fr/index.php?title=BB84_Quantum_Key_Distribution).
-However, you may want to consider basing your implementation on the [E91
-protocol](https://en.wikipedia.org/wiki/Quantum_key_distribution#E91_protocol:_Artur_Ekert_(1991))
-instead of the BB84 protocol since the creation of entangled pairs is a more
-fundamental operation than qubit transmission on the quantum internet.
+Of course, QNE-ADK currently only provides a command-line interface. This might be cumbersome to use for the actual API implementation. It is already helpful if you define what needs to change in QNE-ADK to allow for more straightforward implementation of the APIs for quantum protocols. The output of this sub-challenge can therefore be a written document in which you define these needs. You can also check out the [repository of QNE-ADK](https://github.com/QuTech-Delft/qne-adk) yourself and get started on it. Don't hesitate to reach out to the QNE team during the hackathon to talk about this more!
