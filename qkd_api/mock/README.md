@@ -1,6 +1,6 @@
 # Mock QKD API
 
-This is a mock implementation of the API which can be expanded to fit all your
+This is a mock implementation of the API [(v1.1.1)](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/004/01.01.01_60/gs_QKD004v010101p.pdf) which can be expanded to fit all your
 needs. This implementation does nothing quantum.
 
 Limitations of the mock:

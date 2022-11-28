@@ -4,7 +4,7 @@ In this challenge, the focus is on Application Programming Interfaces (APIs) for
 
 Quantum network protocols are usually implemented using low-level primitives such as quantum gates, entangled qubits, measurements etc. This makes them very difficult to integrate with real applications such as web browsers. The current situation would be equivalent to requiring every single web application to write its own code to establish a TCP connection, craft the HTTP requests, follow any redirects if necessary, and then parse the response. This is unnecessary overhead for the vast majority of programs and thus most of them will use well established libraries like [libcurl](https://curl.se/libcurl/) or [requests](https://requests.readthedocs.io/en/latest/).
 
-It would be much better if established quantum protocols instead provided a similar programmatic API facilitating its use in high-level applications. One such example already exists for Quantum Key Distribution: [ETSI QKD API](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/004/01.01.01_60/gs_QKD004v010101p.pdf). This challenge is all about designing and implementing such APIs for quantum protocols.
+It would be much better if established quantum protocols instead provided a similar programmatic API facilitating its use in high-level applications. One such example already exists for Quantum Key Distribution: [ETSI QKD API](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/004/02.01.01_60/gs_QKD004v020101p.pdf). This challenge is all about designing and implementing such APIs for quantum protocols.
 
 To check out an example of what this challenge is about, see Bruno Rijsman's [report](https://brunorijsman.github.io/openssl-qkd/) on the QKD integration within OpenSSL for the RIPE Quantum Internet Hackathon in 2019.
 
@@ -20,13 +20,15 @@ Each of the parts can be done independently and they require different skills; y
 
 ## 1. API Design & Implementation
 
-An example of an API written for a quantum protocol is the Quantum Key Distribution (QKD) API written by [ETSI](https://www.etsi.org/); it can be found [online](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/004/01.01.01_60/gs_QKD004v010101p.pdf) or in [this repository](qkd_api/QKD_Application_Interface.pdf). This can be a great inspiration for you when working on this sub-challenge, and you can also use the format of the ETSI API definition for your own API design.
+An example of an API written for a quantum protocol is the Quantum Key Distribution (QKD) API written by [ETSI](https://www.etsi.org/); it can be found [online](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/004/02.01.01_60/gs_QKD004v020101p.pdf) (v2.1.1). This can be a great inspiration for you when working on this sub-challenge, and you can also use the format of the ETSI API definition for your own API design.
 
 The goal is to take any quantum protocol from the [Quantum Protocol Zoo](https://wiki.veriqloud.fr/index.php?title=Main_Page) and design an API for it. Think about which functionality it provides and how can the communication between the quantum and classical parts be generalised.
 
 After having defined such an API, you can work on writing a mockup of it. You can do this in any programming language. If you can already think of an application in which such a quantum protocol could be used, you can pick the application's programming language to allow for easier integration in the future.
 
-In this repository, we also provide an example of a mockup written for the ETSI QKD API (see [`qkd/mock`](qkd_api/mock)). This mockup is written in C, so another possible task for you is to re-implement in your programming language of choice (e.g. Python).
+In this repository, we also provide an example of a mockup written for the ETSI QKD API v1.1.1 (see [`qkd_api/mock`](qkd_api/mock)). This mockup is written in C, so another possible task for you is to re-implement in your programming language of choice (e.g. Python).
+
+**Note on the different versions of ETSI QKD APIs**: See the README in [`qkd_api`](qkd/api/README.md) for more details on this.
 
 ## 2. API Integration
 

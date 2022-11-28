@@ -1,8 +1,10 @@
 # QKD API
 
-More details about the API can be found in the official document from ETSI:
-* [online](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/004/01.01.01_60/gs_QKD004v010101p.pdf), or
-* [in this repository](QKD_Application_Interface.pdf)
+The mockup provided in this repository is written for [ETSI QKD 004 v1.1.1](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/004/01.01.01_60/gs_QKD004v010101p.pdf), but there is a more recent version [ETSI QKD 004 v2.1.1](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/004/02.01.01_60/gs_QKD004v020101p.pdf) which you are encouraged to use in your project. You can see for yourself what are the differences or check Annex E of [v2.1.1](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/004/02.01.01_60/gs_QKD004v020101p.pdf) for changelog.
+
+(There is also an API defined for REST-based key delivery, see [ETSI QKD 014 v1.1.1](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/014/01.01.01_60/gs_QKD014v010101p.pdf) - this is a more constrained API which uses HTTPS protocols and JSON data format. See Annex A of [ETSI QKD 014](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/014/01.01.01_60/gs_QKD014v010101p.pdf) or Annex C of [ETSI QKD 004](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/004/02.01.01_60/gs_QKD004v020101p.pdf) for more details on the relationship between these two interfaces.)
+
+The following are methods defined in the [ETSI QKD 004 v1.1.1](https://www.etsi.org/deliver/etsi_gs/QKD/001_099/004/01.01.01_60/gs_QKD004v010101p.pdf):
 
 
 ```c
